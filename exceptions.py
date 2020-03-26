@@ -1,0 +1,2 @@
+class MaximumPokemonsReached(Exception):
+    pass
