@@ -27,11 +27,13 @@ class Trainer:
         self.potions -= 1
 
     def change_active_pokemon(self, pokemon_number):
-        if not self.pokemons[pokemon_number].knocked_out:
-            self.active_pokemon = self.pokemons[pokemon_number]
-            print(f"{self.name} has switched active Pokemon to {self.pokemons[pokemon_number].name}")
-        else:
-            print(f"{self.pokemons[pokemon_number].name} is knocked you have to choose another Pokemon")
-
+        if pokemon_number < len(self.pokemons) and pokemon_number >= 0:
+            if self.pokemons[pokemon_number].knocked_out:
+                print(f"{self.pokemons[pokemon_number].name} is knocked you have to choose another Pokemon")
+            elif self.pokemons[pokemon_number] == self.active_pokemon:
+                print(f"{self.active_pokemon.name} is already your active pokemon")
+            else:
+                self.active_pokemon = self.pokemons[pokemon_number]
+                print(f"{self.name} has switched active Pokemon to {self.pokemons[pokemon_number].name}")
 
 

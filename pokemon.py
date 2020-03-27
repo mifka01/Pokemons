@@ -1,4 +1,7 @@
 class Pokemon:
+    level_need_for_first_evolve = 16
+    level_need_for_first_evolve = 36
+
     def __init__(self, name: str, level: int, type: str):
         self.name = name
         self.level = level

@@ -19,7 +19,4 @@ seel = Pokemon("Seel",1,"Water")
 blaine = Trainer("Blaine",1,[torchic, vulpix, paras, bellsprout, poliwag, seel])
 flint = Trainer("Flint", 1, [charmander,growlithe,bulbasaur,oddish,squirtle,psyduck])
 
-charmander.lose_health(50)
-flint.change_active_pokemon(2)
-flint.change_active_pokemon(0)
 
