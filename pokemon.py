@@ -15,7 +15,7 @@ class Pokemon:
         if self.current_health - amount > 0:
             self.current_health -= amount
             print(f"{self.name} now has {self.current_health} of {self.max_health} maximum health")
-        else:
+        elif not self.knocked_out:
             self.knocked_out = True
             self.current_health = 0
             print(f"{self.name} was knocked out")
@@ -54,3 +54,4 @@ class Pokemon:
         if self.type == "Grass" and target.type == "Fire":
             print(f"{self.name} attacked {target.name} and caused him {self.attack_power /2} damage")
             target.lose_health(self.attack_power / 2)
+        
