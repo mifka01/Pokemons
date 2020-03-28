@@ -57,8 +57,8 @@ for lv in levels:
         fluctuating_num = lv**3 * (((lv/2)+32)/50)
         fluctuating[int(fluctuating_num)] = lv
       
-exp_data = [medium_slow, medium_fast, slow, erratic, fluctuating,fast]
-for head, data in zip(heading,exp_data):
+data_grow = [medium_slow, medium_fast, slow, erratic, fluctuating,fast]
+for head, data in zip(heading,data_grow):
     experiences[head] = data
 with open("data/experiences.json", 'w') as f:
     json_object = json.dumps(experiences, sort_keys=True, indent=4)
