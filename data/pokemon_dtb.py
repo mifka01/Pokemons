@@ -16,13 +16,13 @@ for a in ass:
     names.append(a.text.lower().replace("♀", "-f").replace("♂", "-m").replace(". ","-").replace(" ","-").replace("'","").replace(".","").replace("é","e"))
 names = set(names)
 names.remove("type:-null")
-
+#names = ["pikachu","charmander","squirtle"]
 #! Předělej jmena u evoluci u Mr. Mime etc..
 for name in names:
     print(name)
-    base_stats = {}
+    base_stats = {} 
     defense_stats = {}
-
+    spells = {}
     result = requests.get(f'https://pokemondb.net/pokedex/{name}')
     source = result.content
     soup = BeautifulSoup(source, 'lxml')
@@ -45,7 +45,26 @@ for name in names:
     origin_types = [origin.text for origin in origin_types]
     base_stats["types"] = origin_types
     base_stats["grown_rate"] = grown_rate
-    
+
+    spells_table = soup.find_all("table",{"data-table"})[0]
+    spell_trs = spells_table.find_all("tr")
+    spells_levels = {}
+    for tr in spell_trs[1:]:
+        tds = tr.find_all("td")
+        
+        spell_lv = int(tds[0].text)
+        spell_name = tds[1].text
+        spell_type = tds[2].text
+        spell_cat = tds[3].find("span")['title']
+        spell_power = int(tds[4].text.replace("\u2014", "1"))
+        spell_accuracy = tds[5].text
+        spell_info = {"spell_type": spell_type, "spell_cat": spell_cat, "spell_power": spell_power, "spell_accuracy": spell_accuracy}
+        if spell_power > 1:
+            spells[spell_name] = spell_info
+            spells_levels[spell_lv] = spells
+            spells = {}
+        else:
+            pass
     try:
         evolutions = soup.find("div", {"class": "infocard-list-evo"}).find_all("a", {"class": "ent-name"})
         evo_levels = soup.find("div", {"class": "infocard-list-evo"}).find_all("span", {"class": "infocard infocard-arrow"})
@@ -93,6 +112,7 @@ for name in names:
     stats = {}
     stats["base_stats"] = base_stats
     stats["defense_stats"] = defense_stats
+    stats["spells"] = spells_levels
 
     pokemons[name.capitalize()] = stats
     stats = {}
