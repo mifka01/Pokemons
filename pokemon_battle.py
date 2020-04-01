@@ -15,6 +15,7 @@ class PokemonBattle:
         """Starts main loop for Pokemon Battle."""
         while not self.battle_end:
 
+# FROM HERE IT'S TESTING CODE
             print(f"{self.trainer1.name}'s Turn")
             trainer1_usable_spells = []
             for spell in self.trainer1.active_pokemon.spells:
