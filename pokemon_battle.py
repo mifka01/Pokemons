@@ -20,7 +20,7 @@ class PokemonBattle:
             trainer1_usable_spells = []
             for spell in self.trainer1.active_pokemon.spells:
                 trainer1_usable_spells.append(*spell)
-            print("Choose spells which you want to attack with")
+            print("Choose spell which you want to attack with")
             print(trainer1_usable_spells)
             trainer1_round = input()
             if trainer1_round in trainer1_usable_spells:
