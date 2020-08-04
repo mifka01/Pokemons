@@ -19,7 +19,7 @@ class Trainer:
         self.y_pos = y_pos
         self.trainer_image = None
         self.pokemons = []
-        self.level = 1
+        self.level = None
         self.potions = None
         self.active_pokemon = None
         self.healing = 10 * self.level
@@ -47,6 +47,7 @@ class Trainer:
         Examples of Usage:
             self.level_one(Bulbasaur: Pokemon)
         """
+        self.level = 1
         self.add_pokemon(pokemon)
         self.potions = len(self.pokemons) / 2 * self.level
         self.active_pokemon = self.pokemons[0]
